@@ -1,0 +1,410 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 
+%(http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=25mm,
+ right=25mm,
+ top=20mm,
+ }
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{charter}
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{hyperref}
+
+\usepackage{gensymb}
+
+\usepackage{subcaption}
+\usepackage[numbers,super,square]{natbib}
+
+\usepackage{graphicx}
+\graphicspath{{./figs/}}
+
+\usepackage{wrapfig}
+
+\usepackage{float}
+
+\usepackage[font=scriptsize,labelfont=bf]{caption}
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+\newenvironment{gequation}{\begin{equation}\begin{gathered}}{\end{gathered}\end{equation}}
+
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+
+%Title
+\title{	
+\normalfont \normalsize 
+\textsc{St Paul's School} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge The Hidden Beauty of the Double Pendulum \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Josh Greensmith} % Your name
+\date{\vspace{-3ex}}
+
+\begin{document}
+
+\maketitle % Print the title
+
+\section{Abstract}
+
+The aim of this investigation is to reveal the interesting property of the \textit{flip time} of the double pendulum system and record data of the flip time based on the initial angles of the two pendulums using a Python simulation.
+
+\section{Literature Review}
+
+The basic pendulum has fascinated scientists since Galileo Galilei  observed a swinging chandelier and went on to discover the property that made them useful as timekeepers, called isochronism, where the time period is independent of both the mass and the amplitude. \citep{HistoricalGalileoBook} He also discovered that the period is proportional to the square root of the length which is fully described by the equation $P = 2\pi\sqrt{\frac{l}{g}}$ or more generally:
+$$P = 2\pi \sqrt{\frac{I}{gML_{CM}}}$$ 
+where $l$ is the length, $g$ is the gravitational constant, $M$ is the mass and $I$ is the moment of inertia from the fixed point of the pendulum. \cite{BoundlessPhysicalPendulum} The useful property of isochronism of the simple pendulum meant that it became essential for time keeping over the next centuries as the only variable that needed to be controlled precisely was the length to fix the time period of motion.
+
+Pendulums can now be found in almost every mechanics textbook but a natural question to ask would be what if two pendulums were attached together end to end and allowed to swing? If this is set up in the real world and the motion is tracked, interesting curves emerge which look unpredictable and almost random. \cite{YoutubeDoublePend}
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+\includegraphics[scale = 0.6]{longexposure}
+\caption{Tracked double pendulum}
+\end{wrapfigure}
+
+As the starting conditions are changed by a small amount, such as the starting angles, lengths or masses of both pendulums, the emerging curves change by a large amount which shows that it exhibits \textit{chaotic motion}: "Chaotic means that infinitesimally close initial conditions lead to arbitrarily large divergences as the system evolves." \cite{StackExchangeDoublePend} Due to the complexity of this motion there is no \textit{analytical solution} to the system which means there is no way to work out what the pendulum does after a given time. However, there is a method using Lagrangian mechanics to work out what happens at the next time interval using the rate of change of both the angles and momenta of the pendulums. 
+
+
+\clearpage
+\begingroup
+\setlength\intextsep{0pt}
+To derive the equations of motion for the double pendulum, start with two pendulums with a distributed mass both with length $l$ and mass $m$ and with angles $\theta_{1}$ and $\theta_{2}$. As shown in Figure 2 the following equations for the coordinates $(x_1,y_1)$ and $(x_2,y_2)$ follow by trigonometry:
+\endgroup
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale = 0.6]{doublependdiagram}
+\caption{Diagram of angles on the double pendulum}
+\end{figure}
+
+
+
+\begin{gequation}
+(x_{1},y_{1}) = \Bigg(\frac{l}{2}\sin\theta_1,-\frac{l}{2}\cos\theta_1\Bigg) \\
+(x_{2},y_{2})=\bigg(l\left(\sin \theta _{1}+{\tfrac {1}{2}}\sin \theta _{2}\right),-l\left(\cos \theta _{1}+{\tfrac {1}{2}}\cos \theta _{2}\right)\bigg)
+\end{gequation}
+
+
+
+
+The Lagrangian is now used which is defined as $L = T - V$ where T is the kinetic energy and V is the potential energy of a system \cite{MechanicsBook} and by taking the moment of inertia of a rod attached by the end to be $\frac{1}{12}ml^2$ :
+
+\begin{gequation}
+L = T - V \\
+T = \text{Linear kinetic energy + Rotational kinetic energy} \\ 
+= \frac{1}{2} m \big(v_{1}^2 + v_{2}^2\big) + \frac{1}{2} I\big(\dot\theta_{1}^2 + \dot\theta_{2}^2\big) \\
+= \frac{1}{2} m \big(\dot{x}_1^2 + \dot{y}_1^2 + \dot{x}_2^2 + \dot{y}_2^2\big) + \frac{1}{2} \bigg(\frac{1}{12}ml^2\bigg)\big(\dot\theta_{1}^2 + \dot\theta_{2}^2\big) \\
+V = \text{Gravitational potential energy} =  mg(y_{1} + y_{2})
+\end{gequation}
+
+To simplify the equation for kinetic energy we can just take the first bracket $(\dot{x}_1^2 + \dot{y}_1^2 + \dot{x}_2^2 + \dot{y}_2^2)$ and observe that for example $\dot{x_1} = \frac{dx_1}{dt} = \frac{d\theta_1}{dt} \frac{dx_1}{d\theta_1} = \dot\theta_1 \frac{dx}{d\theta_1}$ by the chain rule and therefore using the coordinates defined in Eq. (2.1):
+
+\begin{gequation}
+\dot{x}_1^2 + \dot{y}_1^2 + \dot{x}_2^2 + \dot{y}_2^2 \\ 
+= \Big(\dot\theta_{1}\frac{l}{2}\cos\theta_{1}\Big)^2 + \Big(\dot\theta_{1}\frac{l}{2}\sin\theta_{1}\Big)^2 + 
+\Big(\dot\theta_{1}l\cos\theta_{1} + \dot\theta_{2}\frac{l}{2}\cos\theta_{2}\Big)^2 + 
+\Big(\dot\theta_{1}l\sin\theta_{1} + \dot\theta_{2}\frac{l}{2}\sin\theta_{2}\Big)^2 \\
+= \frac{1}{4}l^2\Big(5\dot\theta_{1}^2 + \dot\theta_{2}^2 + 4\dot\theta_{1}\dot\theta_{2}\cos(\theta_{1} - \theta_{2})\Big)
+\end{gequation}
+
+%\pagebreak
+And we can redefine the Lagrangian from Eq. (2.2) just in terms of angles by substituting in Eq. (2.3):
+
+\begin{gequation}
+L = \frac{1}{2}m \Bigg(\frac{1}{4}l^2\Big(5\dot\theta_{1}^2 + \dot\theta_{2}^2 + 4\dot\theta_{1}\dot\theta_{2}\cos(\theta_{1} - \theta_{2})\Big)\Bigg) \\
++ \frac{1}{2} \bigg(\frac{1}{12}ml^2\bigg)\big(\dot\theta_{1}^2 + \dot\theta_{2}^2\big) 
+- mg\bigg(-\frac{1}{2}\cos\theta_1 - l(\cos\theta_1 + \frac{1}{2}\cos\theta_2)\bigg) \\ \\
+=\frac{1}{6}ml^2 \Big(4\dot\theta_{1}^2 + \dot\theta_{2}^2 + 3\dot\theta_{1}\dot\theta_{2}\cos(\theta_{1}-\theta_{2})\Big) + \frac{1}{2}mgl \big(3\cos\theta_{1} + \cos\theta_{2}\big)
+\end{gequation}
+
+Now as we know that in the linear case $T = \frac{1}{2}mv^2 = \frac{1}{2}m\dot{x}^2$ it can be seen that $\frac{dT}{d\dot{x}} = m\dot{x} = mv = p$ and since potential energy (V) is independent of velocity, $p = \frac{\partial L}{\partial \dot{x}}$ or in the case of the double pendulum $p_{\theta_{1}} = \frac{\partial L}{\partial \dot\theta_{1}}$ and  $p_{\theta_{2}} = \frac{\partial L}{\partial \dot\theta_{2}}$ so we just take the partial derivatives of Eq. (2.4) in terms of $\dot\theta_{1}$ and $\dot\theta_{2}$:
+
+\begin{gequation}
+p_{\theta_{1}} 
+= \frac{\partial L}{\partial \dot\theta_{1}} 
+= \frac{1}{6} m l^2 \Big(8\dot\theta_{1} 
++ 3\dot\theta_{2} \cos (\theta_{1} - \theta_{2})\Big) \\ \\
+p_{\theta_{2}}
+= \frac{\partial L}{\partial \dot\theta_{2}}
+= \frac{1}{6} m l^2 \Big(2\dot\theta_{2} 
++ 3\dot\theta_{1} \cos (\theta_{1} - \theta_{2})\Big)
+\end{gequation}
+
+Eq. (2.5) can then be re-arranged for $\dot\theta_{1}$ and $\dot\theta_{2}$:
+
+\begin{gequation}
+\dot\theta_{2} = 
+\frac{1}{2} \bigg( \frac{6}{ml^2} p_{\theta_{2}} - 
+3\dot\theta_{1}\cos(\theta_{1}-\theta_{2})\bigg) \\
+\dot\theta_{1} = \frac{1}{8} \bigg(
+\frac{6}{ml^2} p_{\theta_{1}}
+-3 \dot\theta_{2} \cos(\theta_{1} - \theta_{2}) \bigg) \\
+\end{gequation}
+
+By substituting the opposite expressions for $p_{\theta_{1}}$ and $p_{\theta_{2}}$ from Eq. (2.5) into Eq. (2.6) , the characteristic expressions for the rate of change of the angles are formed:
+
+\begin{gequation}
+\dot\theta_{1} = 
+\frac{6}{ml^2} \frac{2p_{\theta_{1}} 
+- 3p_{\theta_{2}} \cos(\theta_{1} - \theta_{2})}
+{16 - 9\cos^2(\theta_{1} - \theta_{2})} \\ \\
+\dot\theta_{2} = 
+\frac{6}{ml^2} \frac{8p_{\theta_{2}} 
+- 3p_{\theta_{1}} \cos(\theta_{1} - \theta_{2})}
+{16 - 9\cos^2(\theta_{1} - \theta_{2})}
+\end{gequation}
+
+
+The final step is to solve for the rate of change of momentum to get the 4 characteristic equations of this system. This can be done by differentiating the Lagrangian now with respect to $\theta_{1}$ and $\theta_{2}$ rather than $\dot\theta_{1}$ and $\dot\theta_{2}$ as 
+$\dot p_{\theta_{1}} = 
+\frac {\partial}{\partial t} 
+\Big ( \frac {\partial L}{\partial \dot\theta_{1}} 
+\Big ) = 
+\frac {\partial}{\partial t}
+\Big ( \partial L \frac{\partial t}{\partial \theta_{1}}
+\Big ) =
+\frac{\partial L}{\partial \theta_{1}}$ \cite{PhysicsInsightsLagrangian}
+and from (2.4):
+\\
+
+\begin{gequation}
+\dot p_{\theta_{1}} = \frac{\partial L}{\partial \theta_{1}}
+=-\frac{1}{2} ml^{2} 
+\bigg (3\frac{g}{l}\sin\theta_{1} + 
+\dot\theta_{1}\dot\theta_{2}\sin (\theta_{1} - \theta_{2})
+\bigg ) \\
+\dot p_{\theta_{2}} = \frac{\partial L}{\partial \theta_{2}}
+=-\frac{1}{2} ml^{2} 
+\bigg (3\frac{g}{l}\sin\theta_{2} -
+\dot\theta_{1}\dot\theta_{2}\sin (\theta_{1} - \theta_{2})
+\bigg )
+\end{gequation}
+
+Eq. (2.7) and Eq. (2.8) are the \textit{characteristic equations} of the double pendulum system which define their motion \citep{WikipediaDoublePend} and can be integrated numerically over time using methods such as the \textit{Euler method} or the \textit{Runge Kutte method}. \cite{MathWorldRunge} \par
+
+Using the characteristic equations in Eq. (2.7) and Eq. (2.8) a simulation for the movement of an ideal distributed double pendulum was written in Javascript where the initial conditions can be adjusted and the behaviour can be observed with the path of the second pendulum drawn out: \url{joshgreensmith.ml/DoublePendulum} \cite{personalWebsite}
+
+%ADD EXAMPLE PHOTO
+
+The Javascript simulation used the Euler method to calculate the rate of change of the angles and the momenta live while the simulation was running. From this simulation an interesting property was observed: with different starting angles for both pendulums the time for the bottom pendulum to "flip" varied in an unpredictable way where a flip is defined as the bottom pendulum going from $\theta_{2} \pmod{2\pi} < \pi \rightarrow \theta_{2} \pmod{2\pi} > \pi$ or vice versa. \cite{MITFlip} This is the property that was measured in this investigation.
+
+\section{Method}
+
+To measure the time to flip based on the initial angles $\theta_{1}$ and $\theta_{2}$ a simulation was re-written in Python (and Fortran) using the \textit{scipy.integrate.odeint} package to numerically integrate the characteristic equations from 0 seconds to 100 seconds. Using the \textit{matplotlib} package graphs were generated with the angles of the double pendulums as they changed over time.
+\par
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{ODEGraph_length80_mass20_theta1_305_theta2_215}
+\end{subfigure}\hspace{0.02\textwidth}
+%
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{ODEGraph_length80_mass20_theta1_01_theta2_04}
+\end{subfigure}\hspace{0.02\textwidth}
+%
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{ODEGraph_length80_mass20_theta1_24_theta2_04}
+\end{subfigure}\hspace{0.02\textwidth}
+%
+\captionsetup{justification=centering}
+\caption{Some examples of the angles of the pendulums changing over time with different starting conditions such as different angles, lengths and masses.}
+\end{figure}
+
+From this the time for the bottom pendulum to flip could be measured based on the initial conditions by seeing where the solution crossed the conditions for a flip. The conditions for a flip are $\theta_{2} \pmod{2\pi} < \pi \rightarrow \theta_{2} \pmod{2\pi} > \pi$ or vice versa as seen in Fig. 4.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{BeforeFlip}
+\end{subfigure}\hspace{0.02\textwidth}
+%
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{AfterFlip}
+\end{subfigure}\hspace{0.02\textwidth}
+%
+\captionsetup{justification=centering}
+\caption{Before and after a flip with angles labelled.}
+\end{figure}
+
+However to visualise the flip data there are 4 starting parameters that could be varied: $\theta_{1}, \theta_{2}, m$ and $l$. In order to observe the flip time for a fixed $m$ and $l$ to start with a \textit{colour map} was created where $\theta_{1}$ and $\theta_{2}$ were varied from $-\pi$ to $\pi$ and pixels on the map were coloured based on the flip time according to a colour scheme from the \textit{matplotlib} package.
+
+Once a colour map was generated which varied the initial angles and measured the flip time a new quantity was defined which could vary the other 2 parameters between colour maps:
+
+\begin{gequation}
+\varepsilon = \frac{l}{m}
+\end{gequation}
+
+The simulation was run to generate colour maps at a resolution of 1500x1500 to observe the behaviour at a small feature level with values of $\varepsilon = (1, 3, 5, 10, 30, 50, 100, 300, 500, 1000)$.
+
+\clearpage
+
+\section{Results}
+%\iffalse
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.78\textwidth}
+\includegraphics[width=\textwidth]{length1_mass1_res1500}
+\caption{$\varepsilon = 1$}
+\end{subfigure}
+\par\bigskip  
+\begin{subfigure}{0.78\textwidth}
+\centering
+\includegraphics[width=\textwidth]{length3_mass1_res1500}
+\caption{$\varepsilon = 3$}
+\end{subfigure}
+\caption{Colour maps for flip time based on the initial angles for different values of $\varepsilon$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+\ContinuedFloat
+\centering
+\begin{subfigure}{0.78\textwidth}
+\includegraphics[width=\textwidth]{length5_mass1_res1500}
+\caption{$\varepsilon = 5$}
+\end{subfigure}
+\par\bigskip  
+\begin{subfigure}{0.78\textwidth}
+\centering
+\includegraphics[width=\textwidth]{length10_mass1_res1500}
+\caption{$\varepsilon = 10$}
+\end{subfigure}
+\caption{Colour maps for flip time based on the initial angles for different values of $\varepsilon$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+\ContinuedFloat
+\centering
+\begin{subfigure}{0.78\textwidth}
+\includegraphics[width=\textwidth]{length30_mass1_res1500}
+\caption{$\varepsilon = 30$}
+\end{subfigure}
+\par\bigskip  
+\begin{subfigure}{0.78\textwidth}
+\centering
+\includegraphics[width=\textwidth]{length50_mass1_res1500}
+\caption{$\varepsilon = 50$}
+\end{subfigure}
+\caption{Colour maps for flip time based on the initial angles for different values of $\varepsilon$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+\ContinuedFloat
+\centering
+\begin{subfigure}{0.78\textwidth}
+\includegraphics[width=\textwidth]{length100_mass1_res1500}
+\caption{$\varepsilon = 100$}
+\end{subfigure}
+\par\bigskip  
+\begin{subfigure}{0.78\textwidth}
+\centering
+\includegraphics[width=\textwidth]{length300_mass1_res1500}
+\caption{$\varepsilon = 300$}
+\end{subfigure}
+\caption{Colour maps for flip time based on the initial angles for different values of $\varepsilon$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+\ContinuedFloat
+\centering
+\begin{subfigure}{0.78\textwidth}
+\includegraphics[width=\textwidth]{length500_mass1_res1500}
+\caption{$\varepsilon = 500$}
+\end{subfigure}
+\par\bigskip
+\begin{subfigure}{0.78\textwidth}
+\includegraphics[width=\textwidth]{length1000_mass1_res1500}
+\caption{$\varepsilon = 1000$}
+\end{subfigure} 
+\caption{Colour maps for flip time based on the initial angles for different values of $\varepsilon$}
+\end{figure}
+\clearpage
+
+%\fi
+
+\section{Analysis}
+
+In the colour maps there are distinct regions: \textit{chaotic} regions, \textit{curved} regions, with semi-predictable behaviour, and the vertical yellow region in the centre. The chaotic regions fill most of the map where a small change in the initial conditions causes the flip time to increase or decrease by up to 40 seconds in some cases. The curved regions can be seen diagonally across the map and they morph and change as $\varepsilon$ increases, eventually disappearing as $\varepsilon \rightarrow \infty$ due to the length of the pendulums outweighing their masses which constricts the behaviour. Take for example the region highlighted in Figure 5, from $\varepsilon = 10$ to $\varepsilon = 30$ the curves are "pushed" up and to the right with the yellow faded region moving with the curve, morphing in a qualitative way.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width=\textwidth]{length10_mass1_res1500_cropped}
+\caption{$\varepsilon = 10$}
+\end{subfigure}\hspace{0.05\textwidth}
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width=\textwidth]{length30_mass1_res1500_cropped}
+\caption{$\varepsilon = 30$}
+\end{subfigure}
+\caption{Example of a curved region moving from $\varepsilon = 10$ to $\varepsilon = 30$}
+\end{figure}
+
+As $\varepsilon$ increases even more these curves move towards the centre eventually disappearing between $\varepsilon = 100$ and $\varepsilon = 300$ as the length begins to outweigh the mass. This behaviour is also seen in the outermost curved regions in the corners but in this case the curves disappear at $\varepsilon \geq 1000$.
+
+There is also a predictable symmetry to all the colour maps as, for example, the pair of starting angles $(-0.4, 2.3)$ will have the same flip time as $(0.4, -2.3)$ as they are reflected in the vertical line centred on the pivot. This is seen in the colour maps as rotational symmetry as if you rotate it by $180\degree$ it is the same.
+
+At the extremes as $\varepsilon \rightarrow \infty$ the colour map settles into a predictable pattern with distinct regions of different flip times with specific boundaries as the lengths outweighs the masses of the pendulums. However, as $\varepsilon \rightarrow 0$ the map becomes entirely chaotic as the masses of the pendulums outweigh their lengths, showing that the masses of the pendulums are more responsible for the chaotic behaviour of the system. The reason for this is seen in the characteristic equations for the system, where the length is squared and the mass due to the moment of a rod taken to be $\frac{1}{12}ml^{2}$. For example, see the angle derivative equation for $\theta_{2}$:
+
+\begin{gequation}
+\dot\theta_{2} = 
+\frac{6}{\boldsymbol{ml^2}} \frac{8p_{\theta_{2}} 
+- 3p_{\theta_{1}} \cos(\theta_{1} - \theta_{2})}
+{16 - 9\cos^2(\theta_{1} - \theta_{2})}
+\end{gequation}
+
+\section{Conclusion}
+
+As the layers of the double pendulum are revealed there is certainly a hidden beauty to it's chaotic behaviour and as the value of $\varepsilon$ changes the colour maps of the flip time change in an unquantifiable manner due to the fundamental chaotic nature of this system. However, there are certain qualitative descriptions of the curves in the colour map that can be made to help understand the changing behaviour.
+
+
+\clearpage
+\bibliographystyle{ieeetr}
+\bibliography{DoublePendBibliography}
+
+
+\end{document}

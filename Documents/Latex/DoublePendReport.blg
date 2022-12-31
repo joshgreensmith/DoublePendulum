@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: DoublePendReport.aux
+The style file: ieeetr.bst
+Database file #1: DoublePendBibliography.bib
+Warning--empty year in MechanicsBook
+Warning--empty author in PhysicsInsightsLagrangian
+Warning--empty author in MITFlip
+You've used 10 entries,
+            1876 wiz_defined-function locations,
+            536 strings with 4496 characters,
+and the built_in function-call counts, 1320 in all, are:
+= -- 113
+> -- 34
+< -- 0
++ -- 18
+- -- 8
+* -- 84
+:= -- 214
+add.period$ -- 12
+call.type$ -- 10
+change.case$ -- 8
+chr.to.int$ -- 0
+cite$ -- 13
+duplicate$ -- 85
+empty$ -- 167
+format.name$ -- 8
+if$ -- 310
+int.to.chr$ -- 0
+int.to.str$ -- 10
+missing$ -- 12
+newline$ -- 35
+num.names$ -- 8
+pop$ -- 42
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 14
+stack$ -- 0
+substring$ -- 0
+swap$ -- 10
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 3
+while$ -- 8
+width$ -- 12
+write$ -- 81
+(There were 3 warnings)

@@ -1,0 +1,3 @@
+#!/Users/Josh/Desktop/DoublePendulum/DPendVenv/bin/python3
+from numba.pycc import main
+main()

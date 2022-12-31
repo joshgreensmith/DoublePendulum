@@ -1,0 +1,79 @@
+%p 41 for Meridian Book
+% Wikipedia: Numerical methods for ordinary differential equations; \\ \url{https://goo.gl/1KnJji}
+
+@Book{MechanicsBook,
+author = {Mary Lunn},
+title = {A First Course in Mechanics},
+publisher = {Oxford Science Publications},
+}
+
+@Book{HistoricalGalileoBook,
+author = {Paul Murdin},
+title = {Full Meridian of Glory: Perilous Adventures in the Competition to Measure the Earth},
+publisher = {Springer},
+year = {2008},
+}
+
+@article{WikipediaDoublePend,
+    author    = "Prof. Jeremy Heyl",
+    title     = "Double Pendulum",
+    journal   = "Wikipedia",
+    year      = "2016",
+}
+
+@article{StackExchangeDoublePend,
+    author    = "Carl Witthoft",
+    title     = "What creates the chaotic motion on a double pendulum?",
+    journal   = "Physics Stack Exchange",
+    year      = "2014",
+    month     = "March",
+}
+
+@article{MITFlip,
+    title     = "Chaos Talk Double Pendulum",
+    journal   = "MIT.edu",
+    year      = "2015",
+}
+
+@article{MathWorldRunge,
+    author    = "Weisstein, Eric W.",
+    title     = "Runge-Kutta Method",
+    journal   = "Wolfram Math World",
+    year      = "2017",
+
+}
+
+@article{PhysicsInsightsLagrangian,
+    title     = "Basic Lagrangian Mechanics",
+    journal   = "Physics Insights",
+    year      = "2006",
+    month     = "January",
+
+}
+
+
+@article{YoutubeDoublePend,
+    author    = "Paul Nathan",
+    title     = "Double Pendulum Chaos Light Writing",
+    journal   = "YouTube",
+    year      = "2010",
+    month     = "October",
+
+}
+
+@article{BoundlessPhysicalPendulum,
+    author    = "Boundless Physics",
+    title     = "The Physical Pendulum",
+    journal   = "Boundless",
+    year      = "2017",
+    month    = "August",
+}
+
+
+@article{personalWebsite,
+    author    = "Josh Greensmith",
+    title     = "Double Pendulum Simulation",
+	journal   = "joshgreensmith.ml",
+    year      = "2017",
+    month     = "August",
+}

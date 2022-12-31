@@ -1,0 +1,25 @@
+{
+    "host": "files.000webhost.com",
+    "port": 22,
+    "username": "joshgreensmith",
+    "password": "jaguarmonkeytelephone",
+    "protocol": "ftp",
+    "agent": null,
+    "privateKeyPath": null,
+    "passphrase": null,
+    "passive": false,
+    "interactiveAuth": false,
+    "remotePath": "/",
+    "uploadOnSave": true,
+    "syncMode": "update",
+    "watcher": {
+        "files": false,
+        "autoUpload": false,
+        "autoDelete": false
+    },
+    "ignore": [
+        "**/.vscode/**",
+        "**/.git/**",
+        "**/.DS_Store"
+    ]
+}
